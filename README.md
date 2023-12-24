@@ -1,0 +1,2 @@
+- Net Framework 4.8
+- Start Drawborad with VS
