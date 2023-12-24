@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Drawborad
 {
     internal class Program
-    { 
+    {
         static int b_size = 4;
         static int[] qPosition = new int[2];
         //static List<string[]> solutions = new List<string[]>();
@@ -17,13 +17,14 @@ namespace Drawborad
             //回傳list 每個list有Q的座標
 
             QueensPuzzleLogic logic = new QueensPuzzleLogic();
-            List<string> val = logic.Start(b_size);
+
 
             while (true)
             {
                 Console.Write("請輸入棋盤大小: ");
 
                 string input = Console.ReadLine();
+                List<string> val = logic.Start(Convert.ToInt32(input));
                 if (int.TryParse(input, out b_size) && b_size > 0)
                 {
                     //Console.Write("請輸入要放置 'Q' 的座標（例如 2,2 2,3）: ");

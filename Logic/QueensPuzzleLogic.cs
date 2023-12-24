@@ -12,6 +12,7 @@ namespace Logic
         int Size = 0;
         bool[,] board;
         List<string[]> solutions = new List<string[]>();
+        List<string> solutions_offset_r1 = new List<string>();
         public QueensPuzzleLogic()
         {
         }
@@ -19,15 +20,15 @@ namespace Logic
         public List<string> Start(int _Size)
         {
             Size = _Size;
-            //board = new bool[Size, Size];
+            board = new bool[Size, Size];
             //
-            //Solve(0);
+            Solve(0);
             //PrintSolutions();
 
-            List<string> list = new List<string>();
-            list.Add("1,2 2,4 3,1 4,3");
-            list.Add("1,3 2,1 3,4 4,2");
-            return list;
+            //List<string> list = new List<string>();
+            //list.Add("1,2 2,4 3,1 4,3");
+            //list.Add("1,3 2,1 3,4 4,2");
+            return solutions_offset_r1;
         }
 
         void Solve(int row)
@@ -70,13 +71,23 @@ namespace Logic
         void AddSolution()
         {
             string[] snapshot = new string[Size];
+            string p = "";
             for (int i = 0; i < Size; i++)
             {
                 snapshot[i] = "";
                 for (int j = 0; j < Size; j++)
-                    snapshot[i] += board[i, j] ? "Q" : "-";
+                {
+                    string result = board[i, j] ? "Q" : "-";
+                    if (result == "Q")
+                    {
+                        p += $"{i + 1},{j + 1} ";
+                    }
+                    snapshot[i] += result;
+                }
+
             }
             solutions.Add(snapshot);
+            solutions_offset_r1.Add(p.TrimEnd());
         }
 
         void PrintSolutions()
